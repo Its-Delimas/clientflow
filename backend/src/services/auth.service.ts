@@ -23,7 +23,7 @@ export const registerUser = async (input: RegisterInput) => {
 
     const user = result.rows[0]
     const token = Jwt.sign(
-        {id:user.id,email:user.emaiL},
+        {id:user.id,email:user.email},
         process.env.JWT_SECRET as string,
         {expiresIn:'7d'}
     )
@@ -50,10 +50,10 @@ export const loginUser = async (input:LoginInput) =>{
     }
 
     const token  = Jwt.sign(
-        {id:user.id,email:user.emaiL},
+        {id:user.id,email:user.email},
         process.env.JWT_SECRET as string,
         {expiresIn:'7d'}
     )
 
-    return {user:{id:user.id,email:user.emaiL,created_at:user.created_at},token}
+    return {user:{id:user.id,email:user.email,created_at:user.created_at},token}
 }
