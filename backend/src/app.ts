@@ -1,9 +1,9 @@
-import express from "express"
-import cors from "cors"
+import express from 'express'
+import cors from 'cors'
 import dotenv from 'dotenv'
 
 import authRoutes from './routes/auth.routes'
-import { authGuard } from "./middleware/auth.middleware"
+import clientRoutes from './routes/client.route'
 
 dotenv.config()
 
@@ -13,16 +13,17 @@ app.use(cors())
 app.use(express.json())
 
 //routes
-app.use('/auth',authRoutes)
+app.use('/auth', authRoutes)
+app.use('/clients', clientRoutes)
 
-app.get('/health',(_req,res)=>{
-    res.json({status:'ok'})
+app.get('/health', (_req, res) => {
+  res.json({ status: 'ok' })
 })
 
 const PORT = process.env.PORT || 5000
 
-app.listen(PORT,()=>{
-    console.log(`Server running on port ${PORT}`)
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`)
 })
 
 export default app
