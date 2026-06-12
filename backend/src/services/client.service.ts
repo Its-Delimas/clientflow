@@ -45,7 +45,7 @@ export const updateClient = async (
   clientId: number,
   input: updateClientSchema
 ) => {
-  const existing = await getClientsById(userId, clientId)
+  const existing: any = await getClientsById(userId, clientId)
   const updated = { ...existing, ...input }
   const result = await pool.query(
     `UPDATE clients
