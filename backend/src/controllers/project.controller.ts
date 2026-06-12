@@ -21,7 +21,6 @@ export const getProjects = async (req: AuthRequest, res: Response) => {
     )
     res.json(projects)
   } catch (err: any) {
-    console.error(err) ///remove this
     if (err.message === 'Client not found') {
       return res.status(404).json({ error: err.message })
     }
@@ -59,7 +58,6 @@ export const createProjectHandler = async (req: AuthRequest, res: Response) => {
     )
     res.status(201).json(project)
   } catch (err: any) {
-    console.error(err) // ← remove this
     if (err.name === 'ZodError') {
       return res.status(400).json({ error: err.errors })
     }
