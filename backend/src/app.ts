@@ -3,7 +3,7 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 
 import authRoutes from './routes/auth.routes'
-import clientRoutes from './routes/client.route'
+import clientRoutes from './routes/client.routes'
 
 dotenv.config()
 

@@ -8,6 +8,8 @@ import {
 } from '../controllers/client.controller'
 import { authGuard } from '../middleware/auth.middleware'
 
+import projectRoutes from './project.routes'
+
 const router = Router()
 
 router.use(authGuard)
@@ -17,5 +19,7 @@ router.get('/:id', getClient)
 router.post('/', createClientHandler)
 router.put('/:id', updateClientHandler)
 router.delete('/:id', deleteClientHandler)
+
+router.use('/:clientId/projects', projectRoutes)
 
 export default router

@@ -18,7 +18,7 @@ export const getAllProjects = async (userId: number, clientId: number) => {
   await verifyClientOwnerhip(userId, clientId)
 
   const result = await pool.query(
-    `SELECT * FROM projects WHERE client_id = $1 ORDER BY id DESC`,
+    `SELECT * FROM projects WHERE client_id =$1 ORDER BY id DESC`,
     [clientId]
   )
   return result.rows
@@ -38,7 +38,7 @@ export const getProjectById = async (
   if (result.rows.length === 0) {
     throw new Error('Project not found')
   }
-  result.rows[0]
+  return result.rows[0]
 }
 
 export const createProject = async (
@@ -52,7 +52,7 @@ export const createProject = async (
 
   const result = await pool.query(
     `INSERT INTO projects (client_id,title,description,status,deadline)
-    VALUES ($1,$2,$3,COALESCE($4,'active),$5)
+    VALUES ($1,$2,$3,COALESCE($4,'active'),$5)
     RETURNING *`,
     [clientId, title, description, status, deadline]
   )
@@ -95,7 +95,7 @@ export const deleteProject = async (
   await verifyClientOwnerhip(userId, clientId)
 
   const result = await pool.query(
-    `DELET FROM projects WHERE id = $1 AND client_id=$2 RETURNING id`,
+    `DELETE FROM projects WHERE id = $1 AND client_id=$2 RETURNING id`,
     [projectId, clientId]
   )
 

@@ -4,7 +4,7 @@ export const CreateProjectSchema = z.object({
   title: z.string().min(1, 'Title is required'),
   description: z.string().optional(),
   status: z.enum(['active', 'completed', 'on_hold']).optional(),
-  deadline: z.date('Invalid date format').optional(),
+  deadline: z.iso.date('Invalid date format').optional(),
 })
 
 export const updateProjectSchema = CreateProjectSchema.partial()
