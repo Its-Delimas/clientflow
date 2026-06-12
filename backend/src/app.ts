@@ -15,7 +15,7 @@ app.use(express.json())
 //routes
 app.use('/auth',authRoutes)
 
-app.get('/health',authGuard,(_req,res)=>{
+app.get('/health',(_req,res)=>{
     res.json({status:'ok'})
 })
 
