@@ -10,7 +10,7 @@ import { authGuard } from '../middleware/auth.middleware'
 
 import projectRoutes from './project.routes'
 
-const router = Router()
+const router = Router({ mergeParams: true })
 
 router.use(authGuard)
 

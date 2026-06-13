@@ -7,6 +7,7 @@ import {
   updateProjectHandler,
   deleteProjectHandler,
 } from '../controllers/project.controller'
+import taskRoutes from './task.routes'
 
 const router = Router({ mergeParams: true })
 
@@ -17,5 +18,7 @@ router.get('/:id', getProject)
 router.post('/', createProjectHandler)
 router.put('/:id', updateProjectHandler)
 router.delete('/:id', deleteProjectHandler)
+
+router.use('/:projectId/tasks', taskRoutes)
 
 export default router

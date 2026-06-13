@@ -13,7 +13,6 @@ import {
 } from '../services/project.service'
 
 export const getProjects = async (req: AuthRequest, res: Response) => {
-  console.log('params: ', req.params)
   try {
     const projects = await getAllProjects(
       req.user!.id,
